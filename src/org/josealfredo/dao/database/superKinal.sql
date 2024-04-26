@@ -161,7 +161,8 @@ insert into Clientes(nombre,apellido,telefono,direccion,nit)values
 		('José ','Alfredo ','2193-3234','Mixco','3124324'),
 		('Jorge ',' Peralta ','3235-4345','Chinique Quiche','4253423');        
 
- 
+ insert into TicketsSoportes(descripcionTicket,estatus,clienteId,facturaId)values
+		('error al iniciar','en proceso',1,null);
 
 
 

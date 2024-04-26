@@ -60,11 +60,6 @@ public class MenuTicketSoporteController implements Initializable {
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnRegresar){
             stage.menuPrincipalView();
-        }else if(event.getSource() == btnGuardar){
-            if(tfTicketId.getText().equals("null")){
-                agregarTicket();
-                cargarDatos();
-            }
         }
     }
 
@@ -165,30 +160,7 @@ public class MenuTicketSoporteController implements Initializable {
         return FXCollections.observableList(clientes);
     }
     
-  public void agregarTicket(){
-        try{
-            conexion = Conexion.getInstance().obtenerConexion();
-            String sql =  "call sp_AgregarTicketSoportes(?,?,?)";
-            statement = conexion.prepareStatement(sql);
-            statement.setString(1, taDescripcion.getText());
-            statement.setInt(2, ((Cliente)cmbCliente.getSelectionModel().getSelectedItem()).getClienteId());
-            statement.setInt(3, 1);
-            statement.execute();
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-        }finally{
-            try{
-                if(statement != null){
-                    statement.close();
-                }
-                if(conexion != null){
-                    conexion.close();
-                }
-            }catch(SQLException e){
-                System.out.println(e.getMessage());
-            }
-        }
-    }    
+
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -630,25 +630,27 @@ delimiter ;
 
 -- TICKET SOPORTE --
 delimiter $$
-	create procedure sp_AgregarTicketSoporte (in descTick varchar (250), in est varchar (30), in cliId int, in facId int)
-		begin 
-			insert into Facturas (descripcionTicket, estatuts , clienteId , facturaId)
-				values (descTick, est, cliId, facId);
-		end$$
+create procedure sp_AgregarTicketSoportes(in des varchar (250),in cliId int, in facId int)
+begin 
+	insert into TicketsSoportes (descripcionTicket,estatus,clienteId , facturaId)
+	values (des,'Recien Creado', cliId, facId);
+end$$
 delimiter ;
-
-delimiter $$
-	create procedure sp_ListarTicketSoporte ()
-		begin 
-			select 
-				TicketSoporte.ticketSoporteId ,
-				TicketSoporte.descripcionTicket,
-                TicketSoporte.estatuts,
-                TicketSoporte.clienteId,
-                TicketSoporte.facturaId
-					FROM TicketSoporte;
-		end $$
-delimiter ;
+ 
+call sp_AgregarTicketSoportes('chepe tiene error en la base de datos',2,null);
+ 
+ 
+DELIMITER $$
+CREATE PROCEDURE sp_listarTicketsSoportes()
+BEGIN
+    select TS.ticketSoporteId, TS.descripcionTicket, TS.estatus,
+			CONCAT('Id: ', C.clienteId, ' | ', C.nombre, '  ', C.apellido) AS 'cliente',
+            TS.facturaId from TicketsSoportes TS
+    join Clientes C on TS.clienteId = C.clienteId;
+END $$
+DELIMITER ;
+ 
+call sp_listarTicketsSoportes();
 
 delimiter $$
 	create procedure sp_EliminarTicketSoporte  (in tickSopId int)
