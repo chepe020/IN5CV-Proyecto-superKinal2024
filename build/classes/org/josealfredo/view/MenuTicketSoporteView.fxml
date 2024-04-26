@@ -33,11 +33,11 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btGuardar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="90.0" prefWidth="99.0" text="Guardar" />
+            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="90.0" prefWidth="99.0" text="Guardar" />
             <Button fx:id="btnRegresar" layoutX="19.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="90.0" prefWidth="99.0" text="Regresar" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <TableView fx:id="tbTickets" layoutX="404.0" layoutY="289.0" prefHeight="438.0" prefWidth="761.0">
+      <TableView fx:id="tblTickets" layoutX="417.0" layoutY="305.0" prefHeight="438.0" prefWidth="761.0">
         <columns>
           <TableColumn fx:id="colTicketId" prefWidth="80.66665649414062" text="TicketId" />
           <TableColumn fx:id="colDescripcion" prefWidth="278.66668701171875" text="Descripción" />
