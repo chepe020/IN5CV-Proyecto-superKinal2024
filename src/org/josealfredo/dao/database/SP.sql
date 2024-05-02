@@ -637,7 +637,7 @@ begin
 end$$
 delimiter ;
  
-call sp_AgregarTicketSoportes('chepe tiene error en la base de datos',2,null);
+call sp_AgregarTicketSoportes('chepe tiene error en la base de datos',2,1);
  
  
 DELIMITER $$

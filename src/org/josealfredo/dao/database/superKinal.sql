@@ -159,13 +159,20 @@ create table TicketsSoportes(
 
 insert into Clientes(nombre,apellido,telefono,direccion,nit)values
 		('José ','Alfredo ','2193-3234','Mixco','3124324'),
-		('Jorge ',' Peralta ','3235-4345','Chinique Quiche','4253423');        
-
- insert into TicketsSoportes(descripcionTicket,estatus,clienteId,facturaId)values
-		('error al iniciar','en proceso',1,null);
-
-insert into Facturas(fecha,hora,clienteId,empleadoId,total)values
-		('2005-1-01','01:21',1,null,12.12);
+		('Jorge ',' Peralta ','3235-4345','Chinique Quiche','4253423');      
         
+insert into TicketsSoportes(descripcionTicket,estatus,clienteId,facturaId)values
+		('error al iniciar','en proceso',1,null);
+        
+insert into Cargos(nombreCargo,descripcionCargo)values
+		('Vendedor','Vende producto sobre informatica');
+        
+insert into Empleados(nombreEmpleado,apellidoEmpleado,sueldo,horaEntrada,horaSalida,cargoId,encargadoId)values
+		('Andres','Perez',5000.00 ,'06:30:00','17:30:00',1,null);
+
+insert into Facturas(fecha,hora,clienteId,empleadoId,total)values         
+		('2024-05-02','13:58:34',1,1,null);
+
+
 
 
