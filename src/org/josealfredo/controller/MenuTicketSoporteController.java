@@ -79,6 +79,28 @@ public class MenuTicketSoporteController implements Initializable {
         tblTickets.getSortOrder().add(colTicketId);
     }
     
+    public void cargarDatosEditar(){
+        TicketSoporte ts = (TicketSoporte)tblTickets.getSelectionModel().getSelectedItem();
+        if(ts != null){
+            tfTicketId.setText(Integer.toString(ts.getTicketSoporteId()));
+            taDescripcion.setText(ts.getDescripcionTicket());
+            cmbCliente.getSelectionModel().select(obtenerIndexCliente());
+            // cmbCliente.getSelectionModel().select();
+        }
+    }
+    
+    public int obtenerIndexCliente(){
+        int index = 0;
+        for(int i = 0 ; i <= cmbCliente.getItems().size() ; i++){
+            String clienteCmb = cmbCliente.getItems().get(i).toString();
+            String clienteTbl = ((TicketSoporte)tblTickets.getSelectionModel().getSelectedItem()).getCliente();
+            if(clienteCmb.equals(clienteTbl)){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
     public void cargarCmbEstatus(){
         cmbEstatus.getItems().add("En proceso");
         cmbEstatus.getItems().add("Finalizado");
@@ -187,6 +209,10 @@ public class MenuTicketSoporteController implements Initializable {
                 e.printStackTrace();
             }
         }
+    }
+    
+    public void editarTicket(){
+         
     }
     
     @Override

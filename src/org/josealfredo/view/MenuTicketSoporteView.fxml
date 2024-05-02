@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josealfredo.controller.MenuTicketSoporteController">
+<AnchorPane id="AnchorPane" onMouseClicked="#cargarDatosEditar" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josealfredo.controller.MenuTicketSoporteController">
    <children>
       <ImageView fitHeight="750.0" fitWidth="1200.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -37,7 +37,7 @@
             <Button fx:id="btnRegresar" layoutX="19.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="90.0" prefWidth="99.0" text="Regresar" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <TableView fx:id="tblTickets" layoutX="417.0" layoutY="305.0" prefHeight="438.0" prefWidth="761.0">
+      <TableView fx:id="tblTickets" layoutX="417.0" layoutY="305.0" onMouseClicked="#cargarDatosEditar" prefHeight="438.0" prefWidth="761.0">
         <columns>
           <TableColumn fx:id="colTicketId" prefWidth="80.66665649414062" text="TicketId" />
           <TableColumn fx:id="colDescripcion" prefWidth="278.66668701171875" text="Descripción" />

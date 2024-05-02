@@ -630,14 +630,14 @@ delimiter ;
 
 -- TICKET SOPORTE --
 delimiter $$
-create procedure sp_AgregarTicketSoportes(in des varchar (250),in cliId int, in facId int)
+create procedure sp_AgregarTicketSoportes(in des varchar (250),in est varchar (30),in cliId int, in facId int)
 begin 
 	insert into TicketsSoportes (descripcionTicket,estatus,clienteId , facturaId)
 	values (des,'Recien Creado', cliId, facId);
 end$$
 delimiter ;
  
-call sp_AgregarTicketSoportes('chepe tiene error en la base de datos',2,1);
+call sp_AgregarTicketSoportes('chepe tiene error en la base de datos','En proceso',2,1);
  
  
 DELIMITER $$
@@ -675,16 +675,18 @@ delimiter $$
 delimiter ;
 
 delimiter $$
-	create procedure sp_EditarTicketSoporte (in tickSopId int, in descTick varchar (250), in est varchar (30), in cliId int, in facId int)
-		begin
-			update TicketSoporte
-				set	
-					descripcionTicket = descTick,
-					estatuts = est,
-					clienteId = cliId,
-					facturaId = facId
-					where ticketSoporteId = tickSopId;
-		end $$
+create procedure sp_EditarTicketsSoportes(in tickSopId int, in des varchar (250), in est varchar (30), in cliId int, in facId int)
+begin
+	update TicketsSoportes
+	set	
+		descripcionTicket = des,
+		estatus = est,
+		clienteId = cliId,
+		facturaId = facId
+	where ticketSoporteId = tickSopId;
+end $$
 delimiter ;
+
+call sp_EditarTicketsSoportes(1,'error al iniciar','Finalizado',1,1);
 
 set global time_zone = '-6:00';
