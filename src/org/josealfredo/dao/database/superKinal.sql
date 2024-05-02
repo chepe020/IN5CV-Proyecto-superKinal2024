@@ -116,7 +116,7 @@ create table Empleados(
 
 create table Facturas(
 	facturaId int not null auto_increment,
-    fecha time not null,
+    fecha date not null,
     hora time not null,
     clienteId int not null,
 	empleadoId int not null,
@@ -164,5 +164,8 @@ insert into Clientes(nombre,apellido,telefono,direccion,nit)values
  insert into TicketsSoportes(descripcionTicket,estatus,clienteId,facturaId)values
 		('error al iniciar','en proceso',1,null);
 
+insert into Facturas(fecha,hora,clienteId,empleadoId,total)values
+		('2005-1-01','01:21',1,null,12.12);
+        
 
 
