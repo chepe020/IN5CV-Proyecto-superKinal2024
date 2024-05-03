@@ -33,8 +33,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="90.0" prefWidth="99.0" text="Guardar" />
-            <Button fx:id="btnRegresar" layoutX="19.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="90.0" prefWidth="99.0" text="Regresar" GridPane.columnIndex="1" />
+            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="90.0" prefWidth="99.0" style="-fx-effect: dropshadow(three-pass-box,black,10,0,0,0); -fx-background-radius: 60; -fx-background-color: #9EADFF;" text="Guardar" />
+            <Button fx:id="btnRegresar" layoutX="19.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="90.0" prefWidth="99.0" style="-fx-effect: dropshadow(three-pass-box,black,10,0,0,0); -fx-background-radius: 60; -fx-background-color: #9EADFF;" text="Regresar" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <TableView fx:id="tblTickets" layoutX="417.0" layoutY="305.0" onMouseClicked="#cargarDatosEditar" prefHeight="438.0" prefWidth="761.0">
@@ -47,5 +47,6 @@
         </columns>
       </TableView>
       <ComboBox fx:id="cmbEstatus" layoutX="28.0" layoutY="541.0" prefHeight="15.0" prefWidth="272.0" />
+      <Button fx:id="btnVaciar" layoutX="1024.0" layoutY="221.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="99.0" style="-fx-effect: dropshadow(three-pass-box,black,10,0,0,0); -fx-background-radius: 60; -fx-background-color: #9EADFF;" text="Vaciar Form" />
    </children>
 </AnchorPane>

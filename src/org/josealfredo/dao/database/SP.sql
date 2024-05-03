@@ -630,21 +630,21 @@ delimiter ;
 
 -- TICKET SOPORTE --
 delimiter $$
-create procedure sp_AgregarTicketSoportes(in des varchar (250),in est varchar (30),in cliId int, in facId int)
+create procedure sp_AgregarTicketSoportes(in des varchar (250),in cliId int, in facId int)
 begin 
 	insert into TicketsSoportes (descripcionTicket,estatus,clienteId , facturaId)
 	values (des,'Recien Creado', cliId, facId);
 end$$
 delimiter ;
  
-call sp_AgregarTicketSoportes('chepe tiene error en la base de datos','En proceso',2,1);
+call sp_AgregarTicketSoportes('chepe tiene error en la base de datos',2,1);
  
  
 DELIMITER $$
 CREATE PROCEDURE sp_listarTicketsSoportes()
 BEGIN
     select TS.ticketSoporteId, TS.descripcionTicket, TS.estatus,
-			CONCAT('Id: ', C.clienteId, ' | ', C.nombre, '  ', C.apellido) AS 'cliente',
+			CONCAT('Id: ', C.clienteId, ' | ', C.nombre, ' ', C.apellido) AS 'cliente',
             TS.facturaId from TicketsSoportes TS
     join Clientes C on TS.clienteId = C.clienteId;
 END $$

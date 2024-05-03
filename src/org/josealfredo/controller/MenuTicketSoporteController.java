@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -40,7 +40,7 @@ public class MenuTicketSoporteController implements Initializable {
     @FXML
     ComboBox cmbEstatus,cmbCliente,cmbFactura;
     @FXML
-    Button btnRegresar,btnGuardar;
+    Button btnRegresar,btnGuardar,btnVaciar;
     @FXML
     TableView tblTickets;
     @FXML
@@ -64,8 +64,20 @@ public class MenuTicketSoporteController implements Initializable {
             if(tfTicketId.getText().equals("")){
                 agregarTickets();
                 cargarDatos();   
+            }else{
+                editarTicket();
+                cargarDatos();
             }
+        }else if(event.getSource() == btnVaciar){
+            vaciarcampos();
         }
+    }
+    
+    public void vaciarcampos(){
+        tfTicketId.clear();
+        taDescripcion.clear();
+        cmbEstatus.getSelectionModel().clearSelection();
+        cmbCliente.getSelectionModel().clearSelection();
     }
 
     
@@ -212,7 +224,30 @@ public class MenuTicketSoporteController implements Initializable {
     }
     
     public void editarTicket(){
-         
+        try{
+           conexion = Conexion.getInstance().obtenerConexion();
+           String sql = "call sp_EditarTicketsSoportes(?,?,?,?,?)";
+           statement = conexion.prepareStatement(sql);
+           statement.setInt(1, Integer.parseInt(tfTicketId.getText()));
+           statement.setString(2, taDescripcion.getText());
+           statement.setString(3, cmbEstatus.getSelectionModel().getSelectedItem().toString());
+           statement.setInt(4, ((Cliente)cmbCliente.getSelectionModel().getSelectedItem()).getClienteId());
+           statement.setInt(5,1);
+           statement.execute();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            try{
+                if(statement != null){
+                    statement.close();
+                }
+                if(conexion != null){
+                    conexion.close();
+                }
+            }catch(SQLException e){
+               System.out.println(e.getMessage());
+            }
+        }
     }
     
     @Override
