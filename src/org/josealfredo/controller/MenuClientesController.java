@@ -45,7 +45,6 @@ public class MenuClientesController implements Initializable {
     TableColumn colClienteId , colNombre , colApellido , colTelefono , colDireccion,colNit;
     @FXML
     Button btnAgregar,btnEditar,btnRegresar,btnEliminar,btnBucar;
-    
     @FXML
     TextField tfClienteId;
     

@@ -15,7 +15,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.josealfredo.controller.FormClienteController;
 import org.josealfredo.controller.MenuCargosController;
+import org.josealfredo.controller.MenuCategoriaProductosController;
 import org.josealfredo.controller.MenuClientesController;
+import org.josealfredo.controller.MenuComprasController;
 import org.josealfredo.controller.MenuPrincipalController;
 import org.josealfredo.controller.MenuTicketSoporteController;
 
@@ -104,6 +106,25 @@ public class Main extends Application {
         }
     }
     
+    public void menuComprasview(){
+        try{
+            MenuComprasController menuComprasController = (MenuComprasController)switchScene("MenuComprasView.fxml",1200,750);
+            menuComprasController.setStage(this);
+        }catch(Exception e){
+           System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    public void menuCategoriaProductosView(){
+        try{
+            MenuCategoriaProductosController menuCategoriaProductosController = (MenuCategoriaProductosController)switchScene("MenuCategoriaProductosView.fxml",950,700);
+            menuCategoriaProductosController.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
     /**
      * @param args the command line arguments
      */

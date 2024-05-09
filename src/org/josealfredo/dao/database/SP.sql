@@ -129,7 +129,7 @@ BEGIN
 			descripcionCargo  = des
 			WHERE cargoId  = carId;
 END$$
-DELIMITER ;
+DELIMITER 
 
 call sp_EditarCargos(2,'Oficinista','trabaja en las oficinas ');
 
@@ -142,6 +142,8 @@ BEGIN
 END$$
 DELIMITER ;
 
+call sp_AgregarCompras('2024-05-09',35.24);
+
 DELIMITER $$ 
 CREATE PROCEDURE sp_ListarCompras()
 BEGIN 
@@ -152,6 +154,8 @@ BEGIN
 			FROM Compras;
 END$$
 DELIMITER ;
+
+call sp_ListarCompras();
 
 DELIMITER $$ 
 CREATE PROCEDURE sp_EliminarCompras(IN compId  INT)
@@ -194,6 +198,8 @@ BEGIN
 END$$
 DELIMITER ;
 
+call sp_AgregarCategoriaProductos('Comida','solo comida de Guatemala');
+
 DELIMITER $$ 
 CREATE PROCEDURE sp_ListarCategoriaProductos()
 BEGIN 
@@ -205,6 +211,8 @@ BEGIN
 END$$
 DELIMITER ;
 
+call sp_ListarCategoriaProductos();
+
 DELIMITER $$ 
 CREATE PROCEDURE sp_EliminarCategoriaProductos(IN catId  INT)
 BEGIN
@@ -213,6 +221,8 @@ BEGIN
 		WHERE categoriaProductoId  =  catId;
 END$$
 DELIMITER ;
+
+-- call sp_EliminarCategoriaProductos(4);
 
 DELIMITER $$ 
 CREATE PROCEDURE sp_BuscarCategoriaProductos(IN catId INT)
@@ -225,6 +235,7 @@ BEGIN
 			WHERE categoriaProductoId  = catId;	
 END$$
 DELIMITER ;
+-- call sp_BuscarCategoriaProductos(1);
 
 DELIMITER $$ 
 CREATE PROCEDURE sp_EditarCategoriaProductos(IN catId INT,IN nom VARCHAR (30), IN des VARCHAR (100))
@@ -232,10 +243,12 @@ BEGIN
 	UPDATE CategoriaProductos
 		SET
 			nombreCategoria  = nom,
-			descripcionCategoria = ape
+			descripcionCategoria = des
 			WHERE categoriaProductoId = catId;
 END$$
 DELIMITER ;
+
+-- call sp_EditarCategoriaProductos(1,'ahgwd','sadas');
 
 -- Distribuidores 
 DELIMITER $$ 
