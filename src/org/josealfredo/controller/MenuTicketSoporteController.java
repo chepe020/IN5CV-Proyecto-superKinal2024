@@ -97,7 +97,6 @@ public class MenuTicketSoporteController implements Initializable {
             tfTicketId.setText(Integer.toString(ts.getTicketSoporteId()));
             taDescripcion.setText(ts.getDescripcionTicket());
             cmbCliente.getSelectionModel().select(obtenerIndexCliente());
-            // cmbCliente.getSelectionModel().select();
         }
     }
     

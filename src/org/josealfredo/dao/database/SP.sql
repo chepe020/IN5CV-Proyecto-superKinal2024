@@ -81,16 +81,20 @@ BEGIN
 END$$
 DELIMITER ;
 
+call sp_AgregarCargos('Jefe','dueño de la empresa');
+
 DELIMITER $$ 
 CREATE PROCEDURE sp_ListarCargos()
 BEGIN 
 	SELECT
-		Cargos.cargoId ,
-		Cargos.nombreCargo  ,
+		Cargos.cargoId,
+		Cargos.nombreCargo,
 		Cargos.descripcionCargo  
 			FROM Cargos;
 END$$
 DELIMITER ;
+
+call sp_ListarCargos();
 
 DELIMITER $$ 
 CREATE PROCEDURE sp_EliminarCargos(IN carId INT)
@@ -100,6 +104,8 @@ BEGIN
 		WHERE cargoId =  carId;
 END$$
 DELIMITER ;
+
+-- call sp_EliminarCargos(6);
 
 DELIMITER $$ 
 CREATE PROCEDURE sp_BuscarCargos(IN carId INT)
@@ -113,6 +119,7 @@ BEGIN
 END$$
 DELIMITER ;
 
+-- call sp_BuscarCargos(1);
 DELIMITER $$ 
 CREATE PROCEDURE sp_EditarCargos(IN carId INT,IN nom VARCHAR (30), IN des VARCHAR (100))
 BEGIN
@@ -123,6 +130,8 @@ BEGIN
 			WHERE cargoId  = carId;
 END$$
 DELIMITER ;
+
+call sp_EditarCargos(2,'Oficinista','trabaja en las oficinas ');
 
 -- Compras 
 DELIMITER $$ 

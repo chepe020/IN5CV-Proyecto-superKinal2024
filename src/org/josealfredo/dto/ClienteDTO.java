@@ -14,6 +14,7 @@ import org.josealfredo.model.Cliente;
 public class ClienteDTO {
     private static ClienteDTO instance;
     private Cliente cliente;
+    
     private ClienteDTO(){
     
     }
