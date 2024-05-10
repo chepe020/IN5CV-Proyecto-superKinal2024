@@ -14,10 +14,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.josealfredo.controller.FormClienteController;
+import org.josealfredo.controller.FormDetallesComprasController;
+import org.josealfredo.controller.FormDistribuidoresController;
 import org.josealfredo.controller.MenuCargosController;
 import org.josealfredo.controller.MenuCategoriaProductosController;
 import org.josealfredo.controller.MenuClientesController;
 import org.josealfredo.controller.MenuComprasController;
+import org.josealfredo.controller.MenuDistribuidoresController;
 import org.josealfredo.controller.MenuPrincipalController;
 import org.josealfredo.controller.MenuTicketSoporteController;
 
@@ -124,6 +127,38 @@ public class Main extends Application {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
+    }
+    
+    public void formDetallesComprasView(){
+        try{
+            FormDetallesComprasController formDetallesComprasController = (FormDetallesComprasController)switchScene("FormDetallesComprasView.fxml",1200,750);
+            formDetallesComprasController.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    public void menuDistribuidoresView(){
+        try{
+            MenuDistribuidoresController menuDistribuidoresController = (MenuDistribuidoresController)switchScene("MenuDistribuidoresView.fxml",1200,750);
+            menuDistribuidoresController.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    public void forDistribuidores(){
+        try{
+            FormDistribuidoresController formDistribuidoresController =(FormDistribuidoresController)switchScene("FormDistribuidoresView.fxml",500,750);
+            formDistribuidoresController.setStage(this);
+        
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
     }
     /**
      * @param args the command line arguments

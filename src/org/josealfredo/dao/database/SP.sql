@@ -259,6 +259,7 @@ BEGIN
 END$$
 DELIMITER ; 
 
+-- call sp_AgregarDistribuidores('as','as','as','as','as');
 DELIMITER $$ 
 CREATE PROCEDURE sp_ListarDistribuidores()
 BEGIN 
@@ -272,6 +273,8 @@ BEGIN
 			FROM Distribuidores;
 END$$
 DELIMITER ;
+
+-- call sp_ListarDistribuidores();
 
 DELIMITER $$ 
 CREATE PROCEDURE sp_EliminarDistribuidores(IN disId INT)
@@ -362,24 +365,28 @@ create procedure sp_EditarProducto(in proId int, in nom varchar(50),in des varch
 DELIMITER ;
 -- DetalleCompra
 DELIMITER $$
-create procedure sp_AgregarDetalleCompra(in canC int, in proId int, in comId int)
+create procedure sp_AgregarDetallesCompras(in canC int, in proId int, in comId int)
 	BEGIN
-		insert into DetalleCompra(cantidadCompra, productoId, compraId) values
+		insert into DetallesCompras(cantidadCompra, productoId, compraId) values
 			(canC, proId, comId);
     END $$
 DELIMITER ;
 
+-- call sp_AgregarDetallesCompras(5,null,1);
+
 DELIMITER $$
-create procedure sp_ListarDetalleCompra()
-	BEGIN
-		select
-			DC.detalleCompraId,
-            DC.cantidadCompra,
-            DC.productoId,
-            DC.compraId
-				from DetalleCompra DC;
-    END $$
+create procedure sp_ListarDetallesCompras()
+BEGIN
+	select
+		DC.detalleCompraId,
+		DC.cantidadCompra,
+		DC.productoId,
+		DC.compraId
+			from DetallesCompras DC;
+END $$
 DELIMITER ;
+
+call sp_ListarDetallesCompras();
 
 DELIMITER $$
 create procedure sp_BuscarDetalleCompra(in detCId int)

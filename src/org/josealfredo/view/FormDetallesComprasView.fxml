@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josealfredo.controller.FormDetallesComprasController">
+   <children>
+      <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/FormDetallesCompras.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tfDetalleCompraId" layoutX="76.0" layoutY="196.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="239.0" style="-fx-background-radius: 50;" />
+      <TextField fx:id="tfCantidadCompra" layoutX="76.0" layoutY="263.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="313.0" style="-fx-background-radius: 50;" />
+      <ComboBox fx:id="cmbproductoId" layoutX="433.0" layoutY="196.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="198.0" style="-fx-background-radius: 30; -fx-background-color: #94B9FF;" />
+      <ComboBox fx:id="cmbcompraId" layoutX="760.0" layoutY="196.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="198.0" style="-fx-background-radius: 30; -fx-background-color: #94B9FF;" />
+      <TableView fx:id="tfDetallesCompras" layoutX="525.0" layoutY="276.0" prefHeight="366.0" prefWidth="405.0">
+        <columns>
+          <TableColumn fx:id="colDetalleCompraId" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="colCantidadCompra" prefWidth="109.0" text="Cantidad-Compra" />
+            <TableColumn fx:id="colProductoId" prefWidth="94.0" text="ProductoId" />
+            <TableColumn fx:id="colCompraId" prefWidth="125.0" text="CompraId" />
+        </columns>
+      </TableView>
+      <GridPane layoutX="83.0" layoutY="365.0" prefHeight="250.0" prefWidth="313.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="btnAceptar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="68.0" prefWidth="226.0" style="-fx-effect: dropshadow(three-pass-box,black,10,0,0,0); -fx-background-radius: 30; -fx-background-color: #9EADFF;" text="Aceptar">
+               <font>
+                  <Font name="Broadway" size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnRegresar" layoutX="54.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="68.0" prefWidth="226.0" style="-fx-effect: dropshadow(three-pass-box,black,10,0,0,0); -fx-background-radius: 30; -fx-background-color: #9EADFF;" text="Regresar" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Broadway" size="22.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+      <Button fx:id="btnVaciar" layoutX="958.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="169.0" style="-fx-effect: dropshadow(three-pass-box,black,10,0,0,0); -fx-background-radius: 30; -fx-background-color: #9EADFF;" text="vaciar form">
+         <font>
+            <Font name="Broadway" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

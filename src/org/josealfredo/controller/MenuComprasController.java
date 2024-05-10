@@ -66,7 +66,7 @@ public class MenuComprasController implements Initializable {
             agregarCompras();
             cargarLista();
         }else if(event.getSource() == btnFormDerallecompra){
-            
+            stage.formDetallesComprasView();
         }
     }
     

@@ -172,7 +172,7 @@ insert into Empleados(nombreEmpleado,apellidoEmpleado,sueldo,horaEntrada,horaSal
 
 insert into Facturas(fecha,hora,clienteId,empleadoId,total)values         
 		('2024-05-02','13:58:34',1,1,null);
-
-
+-- insert into Productos(nombreProducto,descripcionProducto,cantidadStock,precioVentaUnitario,precioVentaMayor,precioCompra,distribuidorId,categoriaProductoId)values
+-- 		();
 
 

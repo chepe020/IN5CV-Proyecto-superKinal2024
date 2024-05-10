@@ -56,7 +56,7 @@ public class MenuCargosController implements Initializable {
         cargarLista();
     }
     
-        @FXML
+    @FXML
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnRegresar){
            stage.menuPrincipalView();
