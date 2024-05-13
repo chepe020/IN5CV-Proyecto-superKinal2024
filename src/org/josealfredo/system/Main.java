@@ -149,9 +149,10 @@ public class Main extends Application {
         }
     }
     
-    public void forDistribuidores(){
+    public void forDistribuidores(int op){
         try{
             FormDistribuidoresController formDistribuidoresController =(FormDistribuidoresController)switchScene("FormDistribuidoresView.fxml",500,750);
+            formDistribuidoresController.setOp(op);
             formDistribuidoresController.setStage(this);
         
         }catch(Exception e){

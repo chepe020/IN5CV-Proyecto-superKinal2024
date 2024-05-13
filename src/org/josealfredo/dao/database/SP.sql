@@ -259,7 +259,7 @@ BEGIN
 END$$
 DELIMITER ; 
 
--- call sp_AgregarDistribuidores('as','as','as','as','as');
+call sp_AgregarDistribuidores('asas','aas','asss','ass','ass');
 DELIMITER $$ 
 CREATE PROCEDURE sp_ListarDistribuidores()
 BEGIN 
@@ -285,6 +285,8 @@ BEGIN
 END$$
 DELIMITER ;
 
+-- call sp_EliminarDistribuidores(2);
+
 DELIMITER $$ 
 CREATE PROCEDURE sp_BuscarDistribuidores(IN disId INT)
 BEGIN
@@ -300,6 +302,8 @@ BEGIN
 END$$
 DELIMITER ;
 
+-- call sp_BuscarDistribuidores(?);
+
 DELIMITER $$ 
 CREATE PROCEDURE sp_EditarDistribuidores(IN disId INT,IN nom VARCHAR (30),IN dir VARCHAR (200), IN nit varchar(15), IN tel varchar(15),  IN web varchar(50))
 BEGIN
@@ -310,9 +314,11 @@ BEGIN
 			nitDistribuidor = nit,
 			telefonoDistribuidor = tel ,
             web = web
-			WHERE clienteId = cliId;
+			WHERE distribuidorId = disId;
 END$$
 DELIMITER ;
+
+-- call sp_EditarDistribuidores(1,'as','as','as','as','as');
 
 -- Productos
 DELIMITER $$
@@ -326,9 +332,14 @@ DELIMITER ;
 DELIMITER $$
 create procedure sp_ListarProducto()
 	BEGIN 
-		select * from Productos;
+		select pro.productoId, pro.nombreProducto, pro.descripcionProducto,pro.cantidadStock, 
+        pro.precioVentaUnitario,pro.precioVentaMayor,pro.precioCompra,DI.distribuidorId, CA.categoriaProductoId from Productos pro
+		join Distribuidores DI on pro.distribuidorId = DI.distribuidorId
+        join CategoriaProductos CA on pro.categoriaProductoId = CA.categoriaProductoId;
     END $$
 DELIMITER ;
+
+call sp_ListarProducto();
 
 DELIMITER $$
 create procedure sp_BuscarProducto(in proId int)
@@ -377,12 +388,10 @@ DELIMITER ;
 DELIMITER $$
 create procedure sp_ListarDetallesCompras()
 BEGIN
-	select
-		DC.detalleCompraId,
-		DC.cantidadCompra,
-		DC.productoId,
-		DC.compraId
-			from DetallesCompras DC;
+	select DC.detalleCompraId,DC.cantidadCompra,
+			Pro.productoId,Com.compraId from DetallesCompras DC
+	join Productos Pro on DC.productoId = Pro.productoId
+    join Compras Com on DC.compraId = Com.compraId;
 END $$
 DELIMITER ;
 
@@ -429,17 +438,14 @@ DELIMITER ;
 DELIMITER $$
 create procedure sp_ListarPromociones()
 BEGIN
-	select
-    Promociones.promocionId,
-    Promociones.precioPromocion,
-    Promociones.descripcionPromocion,
-    Promociones.fechaInicio,
-    Promociones.fechaFinalizacion,
-    Promociones.productoId
-		FROM Promociones;
+	select Prom.promocionId,Prom.precioPromocion,Prom.descripcionPromocion,
+		   Prom.fechaInicio,Prom.fechaFinalizacion,Prom.productoId FROM Promociones Prom
+	join Productos Pro on Prom.productoId = Pro.productoId; 
 
 END $$
 DELIMITER ;
+
+call sp_ListarPromociones();
 
 DELIMITER $$
 create procedure sp_EliminarPromociones(in proId int)
@@ -490,20 +496,29 @@ delimiter ;
 
 
 delimiter $$
-	create procedure sp_ListarEmpleados ()
-		begin 
-			select 
-				Empleados.nombreEmpleado,
-                Empleados.apellidoEmpleado,
-                Empleados.sueldo,
-                Empleados.horaEntrada,
-                Empleados.horaSalida,
-                Empleados.cargoId,
-                Empleados.encargadoId
-					FROM Empleados;
-		end $$
+create procedure sp_listarEmpleados()
+	begin
+		select EM1.empleadoId, EM1.nombreEmpleado as 'empleado', EM1.apellidoEmpleado, EM1.sueldo, EM1.horaEntrada, EM1.horaSalida,
+        C.nombreCargo as 'cargo',
+        EM2.nombreEmpleado as 'encargado' from Empleados EM1
+        join Cargos C on C.cargoId = EM1.cargoId
+        left join Empleados EM2 on EM1.encargadoId = EM2.empleadoId;
+    end $$
 delimiter ;
 
+call sp_listarEmpleados();
+
+delimiter $$
+create procedure sp_listarCargosEncargados()
+	begin
+		select concat(' Id- ', E.empleadoId, ' | ', E.nombreEmpleado) as 'Empleado',
+			concat(' Id- ', C.cargoId, ' | ', C.nombreCargo) 'Cargo' from Empleados E
+        join Cargos C on C.cargoId = E.cargoId
+        where E.encargadoId is null;
+    end$$
+delimiter ;
+
+call sp_listarCargosEncargados();
 delimiter $$
 	create procedure sp_EliminarEmpleados (in empId int)
 		begin
@@ -556,18 +571,18 @@ delimiter $$
 delimiter ;
 
 delimiter $$
-	create procedure sp_ListarFacturas ()
+	create procedure sp_ListarFacturas()
 		begin 
 			select 
-				Facturas.facturaId,
-				Facturas.fecha,
-                Facturas.hora,
-                Facturas.total,
-                Facturas.clienteId,
-                Facturas.empleadoId
-					FROM Facturas;
+				F.facturaId, F.fecha, F.hora, F.total,
+				C.nombre as 'cliente',
+				E.nombreEmpleado as 'empleado' from Facturas F
+            join Clientes C on F.clienteId = C.clienteId
+            join Empleados E on F.empleadoId = E.empleadoId;
 		end $$
 delimiter ;
+
+call sp_ListarFacturas();
 
 delimiter $$
 	create procedure sp_EliminarFacturas (in facId int)
@@ -616,15 +631,16 @@ delimiter $$
 delimiter ;
 
 delimiter $$
-	create procedure sp_ListarDetalleFactura  ()
-		begin 
-			select 
-				DetalleFactura.detalleFacturaId,
-				DetalleFactura.facturaId,
-                DetalleFactura.productoId
-					FROM DetalleFactura;
-		end $$
+create procedure sp_ListarDetallesFacturas()
+begin 
+	select DEF.detalleFacturaId,FA.facturaId,
+		Pro.productoId FROM DetallesFacturas DEF
+    join Facturas FA on DEF.facturaId = FA.facturaId
+    join Productos Pro on DEF.productoId = Pro.productoId; 
+end $$
 delimiter ;
+
+call sp_ListarDetallesFacturas();
 
 delimiter $$
 	create procedure sp_EliminarDetalleFactura   (in detaFacId int)

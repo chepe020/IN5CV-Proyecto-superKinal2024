@@ -23,6 +23,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.josealfredo.dao.Conexion;
+import org.josealfredo.dto.DistribuidoresDTO;
 import org.josealfredo.model.Distribuidores;
 import org.josealfredo.system.Main;
 
@@ -55,10 +56,40 @@ public class MenuDistribuidoresController implements Initializable {
         cargarLista();
     }
     
+    @FXML
+    public void handleButtonAction(ActionEvent event){
+        if(event.getSource() == btnRegresar){
+           stage.menuPrincipalView();
+        }else if(event.getSource() == btnAgregar){
+            stage.forDistribuidores(1);
+        }else if(event.getSource() == btnEditar){
+            DistribuidoresDTO.getDistribuidoresDTO().setDistribuidores((Distribuidores)tblMenuDistribuidores.getSelectionModel().getSelectedItem());
+            stage.forDistribuidores(2);
+        }else if(event.getSource() == btnEliminar){
+            int disId = (((Distribuidores)tblMenuDistribuidores.getSelectionModel().getSelectedItem()).getDistribuidorId());
+            eliminarDistribuidores(disId);
+            cargarLista();
+        }else if(event.getSource() == btnBuscar){
+            tblMenuDistribuidores.getItems().clear();
+            if(tfBuscar.getText().equals("")){
+                cargarLista();
+            }else{
+                tblMenuDistribuidores.getItems().add(buscarDistribuidores());
+                coldistribuidorId.setCellValueFactory(new PropertyValueFactory<Distribuidores, Integer>("distribuidorId"));
+                colnombreDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidores, String>("nombreDistribuidor"));
+                coldireccionDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidores, String>("direccionDistribuidor"));
+                colnitDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidores, String>("nitDistribuidor"));
+                coltelefonoDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidores, String>("telefonoDistribuidor"));
+                colWeb.setCellValueFactory(new PropertyValueFactory<Distribuidores, String>("web"));
+            }
+            
+        }
+    }
+    
     public void cargarLista(){
         tblMenuDistribuidores.setItems(listarDistribuidores());
         coldistribuidorId.setCellValueFactory(new PropertyValueFactory<Distribuidores, Integer>("distribuidorId"));
-        colnombreDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidores, String>("nomnombreDistribuidorbre"));
+        colnombreDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidores, String>("nombreDistribuidor"));
         coldireccionDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidores, String>("direccionDistribuidor"));
         colnitDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidores, String>("nitDistribuidor"));
         coltelefonoDistribuidor.setCellValueFactory(new PropertyValueFactory<Distribuidores, String>("telefonoDistribuidor"));
@@ -104,19 +135,67 @@ public class MenuDistribuidoresController implements Initializable {
         
         return FXCollections.observableList(distribuidores);
 
-     }
-     
-    @FXML
-    public void handleButtonAction(ActionEvent event){
-        if(event.getSource() == btnRegresar){
-           stage.menuPrincipalView();
-        }else if(event.getSource() == btnAgregar){
-            stage.forDistribuidores();
-        }
     }
     
+    public void eliminarDistribuidores(int disId){
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_EliminarDistribuidores(?)";
+            statement = conexion.prepareStatement(sql);
+            statement.setInt(1, disId);
+            statement.execute();
+            
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            try{
+                if(statement != null){
+                    statement.close();
+                }
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+     
     
-
+    public  Distribuidores buscarDistribuidores(){
+        Distribuidores distribuidores = null;
+        
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_BuscarDistribuidores(?);";
+            statement = conexion.prepareStatement(sql);
+            statement.setInt(1, Integer.parseInt(tfBuscar.getText()));
+            resultSet = statement.executeQuery();        
+            
+            if(resultSet.next()){
+               int distribuidorId = resultSet.getInt("distribuidorId");
+               String nombreDistribuidor = resultSet.getString("nombreDistribuidor");
+               String direccionDistribuidor = resultSet.getString("direccionDistribuidor");
+               String nitDistribuidor = resultSet.getString("nitDistribuidor");
+               String telefonoDistribuidor = resultSet.getString("telefonoDistribuidor");
+               String web = resultSet.getString("web");
+               
+               distribuidores = new Distribuidores(distribuidorId,nombreDistribuidor,direccionDistribuidor,nitDistribuidor,telefonoDistribuidor,web);
+            }
+            }catch(SQLException e){
+                System.out.println(e.getMessage()); 
+            }finally{
+                try{
+                    if(resultSet != null){
+                        resultSet.close();
+                    }if(statement != null){
+                        statement.close();
+                     }if(conexion != null){
+                        conexion.close();
+                    }
+                }catch(SQLException e){
+                 System.out.println(e.getMessage());
+               }
+            }
+        return distribuidores;
+    }
     public Main getStage() {
         return stage;
     }
@@ -124,6 +203,7 @@ public class MenuDistribuidoresController implements Initializable {
     public void setStage(Main stage) {
         this.stage = stage;
     }
+    
     
     
 }
