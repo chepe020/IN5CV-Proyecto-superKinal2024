@@ -9,15 +9,14 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.josealfredo.controller.FormDistribuidoresController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josealfredo.controller.FormDistribuidoresController">
    <children>
       <ImageView fitHeight="750.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/ForDistribuidores.png" />
          </image>
       </ImageView>
-      <TextField fx:id="tfDistribuidorId" layoutX="22.0" layoutY="168.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="310.0" style="-fx-background-radius: 30;" />
+      <TextField fx:id="tfDistribuidorId" editable="false" layoutX="22.0" layoutY="168.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="310.0" style="-fx-background-radius: 30;" />
       <TextField fx:id="tfNombreDistribuidor" layoutX="22.0" layoutY="240.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="310.0" style="-fx-background-radius: 30;" />
       <TextField fx:id="tfDireccionDistribuidor" layoutX="22.0" layoutY="310.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="310.0" style="-fx-background-radius: 30;" />
       <TextField fx:id="tfNitDistribuidor" layoutX="22.0" layoutY="375.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="310.0" style="-fx-background-radius: 30;" />
