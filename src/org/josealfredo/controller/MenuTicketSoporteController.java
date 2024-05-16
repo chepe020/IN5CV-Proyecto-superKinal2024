@@ -55,6 +55,13 @@ public class MenuTicketSoporteController implements Initializable {
     private static PreparedStatement statement = null;
     private static ResultSet resultSet = null;
     
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        cargarCmbEstatus();
+        cmbCliente.setItems(listarClientes());
+        cargarDatos();    
+   }    
+
 
     @FXML
     public void handleButtonAction(ActionEvent event){
@@ -249,14 +256,6 @@ public class MenuTicketSoporteController implements Initializable {
         }
     }
     
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        cargarCmbEstatus();
-        cmbCliente.setItems(listarClientes());
-        cargarDatos();
-        
-   }    
-
     public Main getStage() {
         return stage;
     }

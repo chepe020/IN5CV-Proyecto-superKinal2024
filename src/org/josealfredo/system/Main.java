@@ -16,11 +16,13 @@ import javafx.stage.Stage;
 import org.josealfredo.controller.FormClienteController;
 import org.josealfredo.controller.FormDetallesComprasController;
 import org.josealfredo.controller.FormDistribuidoresController;
+import org.josealfredo.controller.FormEmpleadosController;
 import org.josealfredo.controller.MenuCargosController;
 import org.josealfredo.controller.MenuCategoriaProductosController;
 import org.josealfredo.controller.MenuClientesController;
 import org.josealfredo.controller.MenuComprasController;
 import org.josealfredo.controller.MenuDistribuidoresController;
+import org.josealfredo.controller.MenuEmpleadosController;
 import org.josealfredo.controller.MenuPrincipalController;
 import org.josealfredo.controller.MenuTicketSoporteController;
 
@@ -160,6 +162,27 @@ public class Main extends Application {
             e.printStackTrace();
         }
 
+    }
+    
+    public void MenuEmpleadosView(){
+        try{
+            MenuEmpleadosController menuEmpleadosController = (MenuEmpleadosController)switchScene("MenuEmpleadosView.fxml",1200,750);
+            menuEmpleadosController.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    public void formEmpleadosView(int op){
+        try{
+            FormEmpleadosController formEmpleadosController = (FormEmpleadosController)switchScene("FormEmpleadosView.fxml",600,1200);
+            formEmpleadosController.setOp(op);
+            formEmpleadosController.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
     /**
      * @param args the command line arguments

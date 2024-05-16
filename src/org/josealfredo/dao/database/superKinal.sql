@@ -4,7 +4,7 @@ CREATE DATABASE IF NOT EXISTS superKinal;
 
 use superKinal;
 
-create table Clientes(
+create table Clientes( --
 	clienteId int not null auto_increment,
     nombre varchar(30) not null,
     apellido varchar(30) not null,
@@ -15,7 +15,7 @@ create table Clientes(
     primary key PK_clienteId(clienteId)
 ); 
 
-create table Cargos(
+create table Cargos( --
 	cargoId int not null auto_increment,
     nombreCargo varchar(30) not null,
     descripcionCargo varchar(100) not null,
@@ -23,7 +23,7 @@ create table Cargos(
     primary key PK_cargoId(cargoId)
 );
 
-create table Compras (
+create table Compras ( -- 3
 	compraId int not null auto_increment,
     fechaCompra date not null,
     totalCompra decimal (10,2),
@@ -31,7 +31,7 @@ create table Compras (
     primary key PK_compraId(compraId)
 );
 
-create table CategoriaProductos(
+create table CategoriaProductos( --
 	categoriaProductoId int  not null auto_increment,
     nombreCategoria varchar(30) not null,
     descripcionCategoria varchar(100) not null,
@@ -39,7 +39,7 @@ create table CategoriaProductos(
     primary key PK_categoriaProductoId(categoriaProductoId)
 );
 
-create table Distribuidores(
+create table Distribuidores( -- 
 	distribuidorId int not null auto_increment,
     nombreDistribuidor varchar (30)  not null,
     direccionDistribuidor varchar (200) not null,
@@ -69,7 +69,7 @@ create table Productos(
 		references CategoriaProductos(categoriaProductoId)
 );
 
-create table DetallesCompras(
+create table DetallesCompras( -- 3
 	detalleCompraId int not null auto_increment,
     cantidadCompra int not null,
     productoId int not null,
@@ -104,7 +104,7 @@ create table Empleados(
     horaEntrada time not null,
     horaSalida time not null,
     cargoId int not null,
-    encargadoId int,
+    encargadoId int ,
     
     primary key PK_Empleados(empleadoId),
     constraint FK_Empleados_Cargos foreign key Empleados(cargoId)
@@ -141,7 +141,7 @@ create table DetallesFacturas(
 		references Productos(productoId)
 );
 
-create table TicketsSoportes(
+create table TicketsSoportes( --
 	ticketSoporteId int not null auto_increment,
     descripcionTicket varchar(250) not null,
     estatus varchar (30) not null,
@@ -167,8 +167,10 @@ insert into TicketsSoportes(descripcionTicket,estatus,clienteId,facturaId)values
 insert into Cargos(nombreCargo,descripcionCargo)values
 		('Vendedor','Vende producto sobre informatica');
         
-insert into Empleados(nombreEmpleado,apellidoEmpleado,sueldo,horaEntrada,horaSalida,cargoId,encargadoId)values
-		('Andres','Perez',5000.00 ,'06:30:00','17:30:00',1,null);
+insert into Empleados(nombreEmpleado,apellidoEmpleado,sueldo,horaEntrada,horaSalida,cargoId)values
+		('Andres','Perez',5000.00 ,'06:30:00','17:30:00',1);
+		-- ('Manuel','Parras',3000.00 ,'06:30:00','17:30:00',1),
+		-- ('Josue','Lopez',9000.00 ,'06:30:00','17:30:00',1);
 
 insert into Facturas(fecha,hora,clienteId,empleadoId,total)values         
 		('2024-05-02','13:58:34',1,1,null);

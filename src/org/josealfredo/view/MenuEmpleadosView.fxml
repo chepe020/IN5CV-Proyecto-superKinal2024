@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josealfredo.controller.MenuEmpleadosController">
+   <children>
+      <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/MenuEmpleados.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblEmpleados" layoutX="14.0" layoutY="213.0" prefHeight="457.0" prefWidth="885.0">
+        <columns>
+          <TableColumn fx:id="colEmpleadoId" prefWidth="38.66665267944336" text="Id" />
+          <TableColumn fx:id="colNombreEmpleado" prefWidth="115.33333587646484" text="nombre-Empleado" />
+            <TableColumn fx:id="colApellidoEmpleado" prefWidth="116.66667175292969" text="apellido-Empleado" />
+            <TableColumn fx:id="colSuelo" prefWidth="44.66668701171875" text="sueldo" />
+            <TableColumn fx:id="colHoraEntrada" prefWidth="75.3333740234375" text="horaEntrada" />
+            <TableColumn fx:id="colHoraSalida" prefWidth="68.0" text="horaSalida" />
+            <TableColumn fx:id="colCargoId" prefWidth="283.3333435058594" text="cargoId" />
+            <TableColumn fx:id="colEncargadoId" prefWidth="140.66668701171875" text="encargadoId" />
+        </columns>
+      </TableView>
+      <TextField fx:id="tfBuscar" layoutX="466.0" layoutY="180.0" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="298.0" style="-fx-background-radius: 30;" />
+      <Button fx:id="btnBuscar" layoutX="726.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="37.0">
+         <graphic>
+            <ImageView fitHeight="46.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/lupa.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <GridPane layoutX="876.0" layoutY="233.0" prefHeight="418.0" prefWidth="341.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="90.0" prefWidth="251.0" style="-fx-background-radius: 70; -fx-effect: dropshadow(three-pass-box,black,10,0,0,0); -fx-background-color: #9EADFF;" text="Agregar">
+               <font>
+                  <Font name="Broadway" size="32.0" />
+               </font>
+            </Button>
+            <Button layoutX="55.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="90.0" prefWidth="251.0" style="-fx-background-radius: 70; -fx-effect: dropshadow(three-pass-box,black,10,0,0,0); -fx-background-color: #9EADFF;" text="Reportes" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Broadway" size="32.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnEliminar" layoutX="55.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="90.0" prefWidth="251.0" style="-fx-background-radius: 70; -fx-effect: dropshadow(three-pass-box,black,10,0,0,0); -fx-background-color: #9EADFF;" text="Eliminar" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Broadway" size="32.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnEditar" layoutX="55.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="90.0" prefWidth="251.0" style="-fx-background-radius: 70; -fx-effect: dropshadow(three-pass-box,black,10,0,0,0); -fx-background-color: #9EADFF;" text="Editar" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Broadway" size="32.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+      <Button fx:id="btnRegresar" layoutX="918.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="61.0" prefWidth="227.0" style="-fx-background-radius: 70; -fx-effect: dropshadow(three-pass-box,black,10,0,0,0); -fx-background-color: #9EADFF;" text="Regresar">
+         <font>
+            <Font name="Broadway" size="21.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

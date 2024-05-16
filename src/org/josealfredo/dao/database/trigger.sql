@@ -5,10 +5,11 @@ create procedure sp_usodeStocks(in proId int)
 begin
 	update Productos
 		set
-			cantidad = cantidad - 1
+			cantidadStock = cantidadStock - 1
             where productoId = proId;
 end$$
 delimiter ;
+
 
 delimiter $$
 create trigger tg_restardeStock

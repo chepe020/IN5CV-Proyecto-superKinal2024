@@ -49,7 +49,7 @@ public class Cargos {
 
     @Override
     public String toString() {
-        return "Id=" + cargoId + " | " + nombreCargo + " | " + descripcionCargo;
+        return "Id" + cargoId + " | " + nombreCargo + "  " + descripcionCargo;
     }
     
 }

@@ -135,14 +135,14 @@ call sp_EditarCargos(2,'Oficinista','trabaja en las oficinas ');
 
 -- Compras 
 DELIMITER $$ 
-CREATE PROCEDURE sp_AgregarCompras(IN fec date, IN tot  decimal (10.2))
-BEGIN 	
-	INSERT INTO Compras (fechaCompra,totalCompra )VALUES 
-		(fec, tot);
+CREATE PROCEDURE sp_AgregarCompras()
+BEGIN 
+	INSERT INTO Compras (fechaCompra)VALUES 
+		(date(now()));
 END$$
 DELIMITER ;
 
-call sp_AgregarCompras('2024-05-09',35.24);
+call sp_AgregarCompras();
 
 DELIMITER $$ 
 CREATE PROCEDURE sp_ListarCompras()
@@ -493,14 +493,29 @@ delimiter $$
 				values (nomEmp, apeEmp, sud, horEntr, horSld, cargId, encaId);
 		end$$
 delimiter ;
+-- call sp_AgregarEmpleados('1','2',11.00,'06:30:00','17:30:00',2,1);
+
+										-- en empleado 1 va a hacer el encargado del empleado 2
+DELIMITER $$
+	CREATE PROCEDURE sp_asignarEmpleados(IN encId  INT,IN empId  INT)
+		BEGIN
+			UPDATE Empleados
+				SET encargadoId  = encId
+					WHERE empleadoId  = empId;
+		END$$
+DELIMITER ;
+
+-- call sp_asignarEmpleados(1,1);
+
 
 
 delimiter $$
 create procedure sp_listarEmpleados()
 	begin
-		select EM1.empleadoId, EM1.nombreEmpleado as 'empleado', EM1.apellidoEmpleado, EM1.sueldo, EM1.horaEntrada, EM1.horaSalida,
-        C.nombreCargo as 'cargo',
-        EM2.nombreEmpleado as 'encargado' from Empleados EM1
+		select EM1.empleadoId, EM1.nombreEmpleado, EM1.apellidoEmpleado, EM1.sueldo, EM1.horaEntrada, EM1.horaSalida,
+        concat('Id',C.cargoId,' | ',C.nombreCargo,'  ',C.descripcionCargo)as 'cargo',
+        concat('Id',EM2.empleadoId,' | ',EM2.nombreEmpleado,'  ',EM1.apellidoEmpleado)as 'encargado' 
+		from Empleados EM1
         join Cargos C on C.cargoId = EM1.cargoId
         left join Empleados EM2 on EM1.encargadoId = EM2.empleadoId;
     end $$
@@ -559,6 +574,8 @@ delimiter $$
 					where empleadoId = empId;
 		end $$
 delimiter ;
+
+-- call sp_EditarEmpleados(1,'1','2',11.00,'06:30:00','17:30:00',2,1);
 
 -- FACTURAS --
 

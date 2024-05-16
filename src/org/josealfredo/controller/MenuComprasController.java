@@ -117,10 +117,8 @@ public class MenuComprasController implements Initializable {
     public void agregarCompras(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_AgregarCompras(?,?)";
+            String sql = "call sp_AgregarCompras()";
             statement = conexion.prepareStatement(sql);
-            statement.setDate(1, Date.valueOf(tfFechaCompra.getText()));
-            statement.setDouble(2, Double.parseDouble(tfTotalCompra.getText()));
             statement.execute();
             
         }catch(SQLException e){
