@@ -24,6 +24,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import org.josealfredo.dao.Conexion;
+import org.josealfredo.dto.EmpleadosDTO;
 import org.josealfredo.model.Cargos;
 import org.josealfredo.model.Empleados;
 import org.josealfredo.system.Main;
@@ -43,8 +44,7 @@ public class FormEmpleadosController implements Initializable {
     ComboBox cmbcargoId,cmbencargadoId;
     @FXML   
     Button btnAceptar,btnCancelar;
-    @FXML
-    TableView tblEmpleados;
+
     
     private static Connection conexion = null;
     private static PreparedStatement statement = null;
@@ -54,6 +54,10 @@ public class FormEmpleadosController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         cmbcargoId.setItems(listarCargos());
         cmbencargadoId.setItems(listarEmpleados());
+        
+        if(EmpleadosDTO.getEmpleadosDTO().getEmpleados() != null){
+            carcargarDatos(EmpleadosDTO.getEmpleadosDTO().getEmpleados());
+        }
     }    
     
     @FXML
@@ -71,6 +75,8 @@ public class FormEmpleadosController implements Initializable {
         }
     }
     
+
+    
     public void carcargarDatos(Empleados empleados){
         tfempleadoId.setText(Integer.toString(empleados.getEmpleadoId()));
         tfnombreEmpleado.setText(empleados.getNombreEmpleado());
@@ -82,25 +88,11 @@ public class FormEmpleadosController implements Initializable {
         cmbencargadoId.getSelectionModel().select(obtenerIndexEncargados());
     }
     
-    public void carcgarDatosEditados(){
-        Empleados em = (Empleados)tblEmpleados.getSelectionModel().getSelectedItem();
-        if(em != null){
-            tfempleadoId.setText(Integer.toString(em.getEmpleadoId()));
-            tfnombreEmpleado.setText(em.getNombreEmpleado());
-            tfapellidoEmpleado.setText(em.getApellidoEmpleado());
-            tfsueldo.setText(Double.toString(em.getSueldo()));
-            tfhoraEntrada.setText(em.getHoraEntrada().toString());
-            tfhoraSalida.setText(em.getHoraSalida().toString());
-            cmbcargoId.getSelectionModel().select(obtenerIndexCargos());
-            cmbencargadoId.getSelectionModel().select(obtenerIndexEncargados());
-        }
-    }
-    
     public int obtenerIndexCargos(){
         int index = 0;
-        for(int i = 0 ; i <= cmbcargoId.getItems().size() ; i++){
+        for(int i = 0 ; i < cmbcargoId.getItems().size() ; i++){
             String cargoIdCmb = cmbcargoId.getItems().get(i).toString();
-            String cargoTb1 = ((Empleados)tblEmpleados.getSelectionModel().getSelectedItems()).getCargo();
+            String cargoTb1 = Integer.toString(EmpleadosDTO.getEmpleadosDTO().getEmpleados().getCargoId());
             if(cargoIdCmb.equals(cargoTb1)){
                 index = i;
                 break;
@@ -112,9 +104,9 @@ public class FormEmpleadosController implements Initializable {
     
     public int obtenerIndexEncargados(){
         int index = 0;
-        for(int i = 0 ; i <= cmbencargadoId.getItems().size() ; i++){
+        for(int i = 0 ; i < cmbencargadoId.getItems().size() ; i++){
             String encargadoIdCmb = cmbencargadoId.getItems().get(i).toString();
-            String encargadoTb1 = ((Empleados)tblEmpleados.getSelectionModel().getSelectedItem()).getEncargado();
+            String encargadoTb1 = Integer.toString(EmpleadosDTO.getEmpleadosDTO().getEmpleados().getEncargadoId());
             if(encargadoIdCmb.equals(encargadoTb1)){
                 index = i;
             }
@@ -242,8 +234,8 @@ public class FormEmpleadosController implements Initializable {
             statement.setString(2,tfnombreEmpleado.getText());
             statement.setString(3, tfapellidoEmpleado.getText());
             statement.setDouble(4, Double.parseDouble(tfsueldo.getText()));
-            statement.setTime(5, Time.valueOf(tfhoraEntrada.getText()));
-            statement.setTime(6, Time.valueOf(tfhoraSalida.getText()));
+            statement.setTime(5, Time.valueOf(LocalTime.now()));
+            statement.setTime(6, Time.valueOf(LocalTime.now()));
             statement.setInt(7, ((Cargos)cmbcargoId.getSelectionModel().getSelectedItem()).getCargoId());
             statement.setInt(8, ((Empleados)cmbencargadoId.getSelectionModel().getSelectedItem()).getEmpleadoId());
             statement.execute();

@@ -153,6 +153,7 @@ BEGIN
 		Compras.totalCompra  
 			FROM Compras;
 END$$
+
 DELIMITER ;
 
 call sp_ListarCompras();
@@ -514,7 +515,7 @@ create procedure sp_listarEmpleados()
 	begin
 		select EM1.empleadoId, EM1.nombreEmpleado, EM1.apellidoEmpleado, EM1.sueldo, EM1.horaEntrada, EM1.horaSalida,
         concat('Id',C.cargoId,' | ',C.nombreCargo,'  ',C.descripcionCargo)as 'cargo',
-        concat('Id',EM2.empleadoId,' | ',EM2.nombreEmpleado,'  ',EM1.apellidoEmpleado)as 'encargado' 
+        concat('Id',EM2.empleadoId,' | ',EM2.nombreEmpleado,'  ',EM2.apellidoEmpleado)as 'encargado' 
 		from Empleados EM1
         join Cargos C on C.cargoId = EM1.cargoId
         left join Empleados EM2 on EM1.encargadoId = EM2.empleadoId;
@@ -542,6 +543,8 @@ delimiter $$
 					where empleadoId = empId;
 		end $$
 delimiter ;
+
+-- call sp_EliminarEmpleados(2);
 
 delimiter $$
 	create procedure sp_BuscarEmpleados (in empId int)

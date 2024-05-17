@@ -65,11 +65,15 @@ public class MenuEmpleadosController implements Initializable {
         }if(event.getSource() == btnAgregar){
             Stage.formEmpleadosView(1);
         }if(event.getSource() == btnEditar){
-            EmpleadosDTO.getEmpleadosDTO().setEmpleados((Empleados)tblEmpleados.getSelectionModel().getSelectedItems());
+            EmpleadosDTO.getEmpleadosDTO().setEmpleados((Empleados)tblEmpleados.getSelectionModel().getSelectedItem());
             Stage.formEmpleadosView(2);
+        }if(event.getSource() == btnEliminar){
+            int empId = ((Empleados)tblEmpleados.getSelectionModel().getSelectedItem()).getEmpleadoId();
+            eliminarEmpleados(empId);
+            cargaLista();
         }
     }
-    
+     
     public void cargaLista(){
         tblEmpleados.setItems(listarEmpleados());
         colEmpleadoId.setCellValueFactory(new PropertyValueFactory<Empleados, Integer>("empleadoId"));
@@ -127,6 +131,27 @@ public class MenuEmpleadosController implements Initializable {
             }
             
         return FXCollections.observableList(empleados);
+    }
+    
+    public void eliminarEmpleados(int empId){
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_EliminarEmpleados(?)";
+            statement = conexion.prepareStatement(sql);
+            statement.setInt(1, empId);
+            statement.execute();
+            
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            try{
+                if(statement != null){
+                    statement.close();
+                }
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
              
     public Main getStage() {
