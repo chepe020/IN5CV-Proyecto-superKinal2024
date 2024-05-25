@@ -58,7 +58,7 @@ create table Productos(
     precioVentaUnitario decimal (10,2) not null,
     precioVentaMayor decimal(10,2) not null,
     precioCompra decimal(10,2) not null,
--- BloB 
+	imagen longblob,
 	distribuidorId int not null,
 	categoriaProductoId int not null,
     
@@ -156,6 +156,26 @@ create table TicketsSoportes( --
 	
 );
 
+create table NivelesAcceso(
+	nivelAccesoId int not null auto_increment,
+    nivelAcceso varchar(40) not null,
+    
+    primary key PK_nivelAccesoId(nivelAccesoId)
+);
+
+create table Usuarios(
+	usuarioId int not null auto_increment,
+    usuario varchar(30) not null,
+    contrasenia varchar(100) not null,
+    nivelAccesoId int not null,
+    empleadoId int not null,
+    
+    primary key PK_usuarioId(usuarioId),
+    constraint FK_Usuarios_NivelesAcceso foreign key Usuarios(nivelAccesoId)
+		references NivelesAcceso(nivelAccesoId),
+	constraint PK_Usuarios_Empleados foreign key Usuarios(empleadoId)
+		references Empleados(empleadoId)
+);
 
 insert into Clientes(nombre,apellido,telefono,direccion,nit)values
 		('José ','Alfredo ','2193-3234','Mixco','3124324'),
@@ -165,16 +185,30 @@ insert into TicketsSoportes(descripcionTicket,estatus,clienteId,facturaId)values
 		('error al iniciar','en proceso',1,null);
         
 insert into Cargos(nombreCargo,descripcionCargo)values
-		('Vendedor','Vende producto sobre informatica');
+		('Jefe','Dueño de la empresa'),
+		('Empleado ','ayuda a vender en la tienda '),
+		('Secretaria','Asiste al jefe');
+        
         
 insert into Empleados(nombreEmpleado,apellidoEmpleado,sueldo,horaEntrada,horaSalida,cargoId)values
-		('Andres','Perez',5000.00 ,'06:30:00','17:30:00',1);
-		-- ('Manuel','Parras',3000.00 ,'06:30:00','17:30:00',1),
-		-- ('Josue','Lopez',9000.00 ,'06:30:00','17:30:00',1);
+		('José','Alfredo',55000.00 ,'06:30:00','17:30:00',1),
+		('Manuel','Parras',3000.00 ,'06:30:00','17:30:00',2),
+		('Abi','Lopez',4000.00 ,'06:30:00','17:30:00',3);
 
 insert into Facturas(fecha,hora,clienteId,empleadoId,total)values         
 		('2024-05-02','13:58:34',1,1,null);
--- insert into Productos(nombreProducto,descripcionProducto,cantidadStock,precioVentaUnitario,precioVentaMayor,precioCompra,distribuidorId,categoriaProductoId)values
--- 		();
+        
+insert into CategoriaProductos(nombreCategoria,descripcionCategoria)values
+		('Jefe ','Dueño de la Empresa ');
+        
+insert into Distribuidores(nombreDistribuidor,direccionDistribuidor,nitDistribuidor,telefonoDistribuidor,web)values
+		('Pedro','Zona 1 Ciudad de Guatemala','CF','7392-7361','link');
 
+insert into Productos(nombreProducto,descripcionProducto,cantidadStock,precioVentaUnitario,precioVentaMayor,precioCompra,imagen,distribuidorId,categoriaProductoId)values
+ 		('Pancito','Alimento echo a base de pan ',100,10.00,6.00,300.00,null,1,1);
 
+insert into NivelesAcceso(nivelAcceso)values
+		('Administrador'),
+		('Usuarios');
+insert into Usuarios(usuario,contrasenia,nivelAccesoId,empleadoId)values
+		('Jchepe', '$2a$10$IYgQkW2ADTG.rpZxiA9HquLd.voYWyY/7iu6a5m25RTAZygbw424W',1, 1);

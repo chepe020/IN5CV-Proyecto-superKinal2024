@@ -14,11 +14,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import org.josealfredo.dao.Conexion;
 import org.josealfredo.dto.ClienteDTO;
 import org.josealfredo.model.Cliente;
 import org.josealfredo.system.Main;
+import org.josealfredo.utils.SuperKInalAlerta;
 
 /**
  * FXML Controller class
@@ -54,12 +56,29 @@ public class FormClienteController implements Initializable {
            ClienteDTO.getClienteDTO().setCliente(null);
         }if(event.getSource() == btGuardar){
             if(op == 1){
-                agregarClientes();
-                stage.menuClientesView();                
+                if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("") && !tfDireccion.getText().equals("")){
+                    SuperKInalAlerta.getInstance().mostrarAlertaInfo(002);
+                    agregarClientes();
+                    stage.menuClientesView();      
+                }else{
+                    SuperKInalAlerta.getInstance().mostrarAlertaInfo(001);
+                    tfNombre.requestFocus();
+                    return;
+                }  
+                
             }else if(op == 2){
-                editarClientes();
-                ClienteDTO.getClienteDTO().setCliente(null);
-                stage.menuClientesView();
+                
+                if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("") && !tfDireccion.getText().equals("")){
+                    if(SuperKInalAlerta.getInstance().mostrarAlertaConfi(2).get() == ButtonType.OK){
+                        editarClientes();
+                        ClienteDTO.getClienteDTO().setCliente(null);
+                        stage.menuClientesView();
+                    }         
+                }else{
+                    SuperKInalAlerta.getInstance().mostrarAlertaInfo(001);
+                    tfNombre.requestFocus();
+                    return;
+                }
             }
         }
     }

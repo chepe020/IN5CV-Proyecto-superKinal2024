@@ -71,6 +71,9 @@ public class FormEmpleadosController implements Initializable {
             }else if(op == 2){
                 editarEmpleados();
                 Stage.MenuEmpleadosView();
+            }else if(op == 3){
+                agregarEmpleados();
+                Stage.registroUsuariosController();
             }
         }
     }

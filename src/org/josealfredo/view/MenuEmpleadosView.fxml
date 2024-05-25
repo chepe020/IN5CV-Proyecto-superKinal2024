@@ -22,9 +22,9 @@
       <TableView fx:id="tblEmpleados" layoutX="14.0" layoutY="213.0" prefHeight="457.0" prefWidth="885.0">
         <columns>
           <TableColumn fx:id="colEmpleadoId" prefWidth="38.66665267944336" text="Id" />
-          <TableColumn fx:id="colNombreEmpleado" prefWidth="115.33333587646484" text="nombre-Empleado" />
-            <TableColumn fx:id="colApellidoEmpleado" prefWidth="116.66667175292969" text="apellido-Empleado" />
-            <TableColumn fx:id="colSuelo" prefWidth="44.66668701171875" text="sueldo" />
+          <TableColumn fx:id="colNombreEmpleado" prefWidth="96.79999542236328" text="nombre" />
+            <TableColumn fx:id="colApellidoEmpleado" prefWidth="101.5999755859375" text="apellido" />
+            <TableColumn fx:id="colSuelo" text="sueldo" />
             <TableColumn fx:id="colHoraEntrada" prefWidth="75.3333740234375" text="horaEntrada" />
             <TableColumn fx:id="colHoraSalida" prefWidth="68.0" text="horaSalida" />
             <TableColumn fx:id="colCargoId" prefWidth="283.3333435058594" text="cargoId" />

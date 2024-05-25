@@ -9,7 +9,7 @@ BEGIN
 END$$
 DELIMITER ;
 
-call sp_AgregarCliente('Leonel','Messi','3243-4325','Buenos Aires','423432523');
+-- call sp_AgregarCliente('Leonel','Messi','3243-4325','Buenos Aires','423432523');
 
 DELIMITER $$ 
 CREATE PROCEDURE sp_ListarClientes()
@@ -67,9 +67,9 @@ BEGIN
 			WHERE clienteId = cliId;
 END$$
 DELIMITER ;
-CALL sp_EditarCliente(3, 'Daniela' , 'Flores', '3273-9102' , 'Mixco','242323523');
+-- CALL sp_EditarCliente(3, 'Daniela' , 'Flores', '3273-9102' , 'Mixco','242323523');
 
-call sp_ListarClientes();
+-- call sp_ListarClientes();
 
 -- Cargos 
 
@@ -81,7 +81,7 @@ BEGIN
 END$$
 DELIMITER ;
 
-call sp_AgregarCargos('Jefe','dueño de la empresa');
+-- call sp_AgregarCargos('Jefe','dueño de la empresa');
 
 DELIMITER $$ 
 CREATE PROCEDURE sp_ListarCargos()
@@ -131,7 +131,7 @@ BEGIN
 END$$
 DELIMITER 
 
-call sp_EditarCargos(2,'Oficinista','trabaja en las oficinas ');
+-- call sp_EditarCargos(2,'Oficinista','trabaja en las oficinas ');
 
 -- Compras 
 DELIMITER $$ 
@@ -142,7 +142,7 @@ BEGIN
 END$$
 DELIMITER ;
 
-call sp_AgregarCompras();
+-- call sp_AgregarCompras();
 
 DELIMITER $$ 
 CREATE PROCEDURE sp_ListarCompras()
@@ -199,7 +199,8 @@ BEGIN
 END$$
 DELIMITER ;
 
-call sp_AgregarCategoriaProductos('Comida','solo comida de Guatemala');
+-- call sp_AgregarCategoriaProductos('Comida','solo comida de Guatemala');
+-- call sp_AgregarCategoriaProductos('Comida','solo comida de Guatemala');
 
 DELIMITER $$ 
 CREATE PROCEDURE sp_ListarCategoriaProductos()
@@ -260,7 +261,7 @@ BEGIN
 END$$
 DELIMITER ; 
 
-call sp_AgregarDistribuidores('asas','aas','asss','ass','ass');
+-- call sp_AgregarDistribuidores('asas','aas','asss','ass','ass');
 DELIMITER $$ 
 CREATE PROCEDURE sp_ListarDistribuidores()
 BEGIN 
@@ -323,18 +324,20 @@ DELIMITER ;
 
 -- Productos
 DELIMITER $$
-create procedure sp_AgregarProducto(in nom varchar(50),in des varchar(100),in can int, in preU decimal(10,2),in preM decimal(10,2),in preC decimal(10,2), in ima blob, in disId int, in catId int)
+create procedure sp_AgregarProducto(in nom varchar(50),in des varchar(100),in can int, in preU decimal(10,2),in preM decimal(10,2),in preC decimal(10,2), in ima longblob, in disId int, in catId int)
 	BEGIN
-		insert into Productos(nombreProducto, descripcionProducto, cantidadStock, precioUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidorId, categoriaProductosId ) values
+		insert into Productos(nombreProducto, descripcionProducto, cantidadStock, precioVentaUnitario, precioVentaMayor, precioCompra, imagen, distribuidorId, categoriaProductoId ) values
 			(nom, des, can, preU, preM, preC, ima, disId, catId);
 	END $$
 DELIMITER ;
+-- call  sp_AgregarProducto('carne','Alimento echo a base de vacas ',100,10.00,6.00,300.00,null,1,1);
+
 
 DELIMITER $$
 create procedure sp_ListarProducto()
 	BEGIN 
 		select pro.productoId, pro.nombreProducto, pro.descripcionProducto,pro.cantidadStock, 
-        pro.precioVentaUnitario,pro.precioVentaMayor,pro.precioCompra,DI.distribuidorId, CA.categoriaProductoId from Productos pro
+        pro.precioVentaUnitario,pro.precioVentaMayor,pro.precioCompra,pro.imagen,DI.distribuidorId, CA.categoriaProductoId from Productos pro
 		join Distribuidores DI on pro.distribuidorId = DI.distribuidorId
         join CategoriaProductos CA on pro.categoriaProductoId = CA.categoriaProductoId;
     END $$
@@ -350,6 +353,8 @@ create procedure sp_BuscarProducto(in proId int)
     END $$
 DELIMITER ;
 
+-- call sp_BuscarProducto(3);
+
 DELIMITER $$
 create procedure sp_EliminarProducto(in proId int)
 	BEGIN
@@ -358,23 +363,27 @@ create procedure sp_EliminarProducto(in proId int)
     END $$
 DELIMITER ;
 
+-- call sp_EliminarProducto(2);
+
 DELIMITER $$
-create procedure sp_EditarProducto(in proId int, in nom varchar(50),in des varchar(100),in can int, in preU decimal(10,2),in preM decimal(10,2),in preC decimal(10,2), in ima blob, in disId int, in catId int )
+create procedure sp_EditarProductos(in proId int, in nom varchar(50),in des varchar(100),in can int, in preU decimal(10,2),in preM decimal(10,2),in preC decimal(10,2), in ima blob, in disId int, in catId int )
 	BEGIN
 		update Productos	
 			set 
             nombreProducto = nom,
-            descripcionProduto = des,
+            descripcionProducto  = des,
             cantidadStock = can,
             precioVentaUnitario = preU,
             precioVentaMayor = preM,
             precioCompra = preC,
-            imagenProducto = ima,
+            imagen = ima,
             distribuidorId = disId,
-            categoriaProductosId = catId
+            categoriaProductoId = catId
             where productoId = proId;
     END $$
 DELIMITER ;
+
+-- call sp_EditarProductos(3,'sopas','Alimento echo a base de fideos ',100,10.00,6.00,300.00,null,1,1);
 -- DetalleCompra
 DELIMITER $$
 create procedure sp_AgregarDetallesCompras(in canC int, in proId int, in comId int)
@@ -702,7 +711,7 @@ begin
 end$$
 delimiter ;
  
-call sp_AgregarTicketSoportes('chepe tiene error en la base de datos',2,1);
+-- call sp_AgregarTicketSoportes('chepe tiene error en la base de datos',2,1);
  
  
 DELIMITER $$
@@ -752,6 +761,39 @@ begin
 end $$
 delimiter ;
 
-call sp_EditarTicketsSoportes(1,'error al iniciar','Finalizado',1,1);
+-- Usuarios
+delimiter $$
+create procedure sp_AgregarUsuarios(us varchar(30), con varchar(100), nivAccId int , empId int)
+begin
+	insert into Usuarios(usuario,contrasenia,nivelAccesoId,empleadoId) values
+		(us,con,nivAccId,empId);
+end $$
+delimiter ;
+
+-- call sp_AgregarUsuarios('Jchepe','1234',1,1);
+
+delimiter $$
+create procedure sp_BuscarUsuarios(us varchar(30))
+begin
+	select * from Usuarios
+		where usuario = us;
+end $$
+delimiter ;
+
+delimiter $$
+create procedure sp_ListarNivelesAcceso()
+begin
+	select * from NivelesAcceso;
+end $$
+delimiter ;
+
+call sp_ListarNivelesAcceso();
+
+-- call sp_BuscarUsuarios('Jchepe');
+
+
+ select * from Usuarios;
+
+-- call sp_EditarTicketsSoportes(1,'error al iniciar','Finalizado',1,1);
 
 set global time_zone = '-6:00';

@@ -10,8 +10,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import org.josealfredo.system.Main;
+import org.josealfredo.utils.SuperKInalAlerta;
 /**
  *
  * @author Alfredo
@@ -20,7 +22,7 @@ public class MenuPrincipalController implements Initializable {
     private Main stage;
     
     @FXML
-    MenuItem btnMenuClientes ,btnTicketSoporte,btnCargos,btnCompras,btnCategoriaProductos,btnDistribuidores,btnEmpleados;
+    MenuItem btnMenuClientes ,btnTicketSoporte,btnCargos,btnCompras,btnCategoriaProductos,btnDistribuidores,btnEmpleados,btnProductos,btnSalir;
     
     @Override
     public void initialize(URL location,ResourceBundle resources){
@@ -51,7 +53,14 @@ public class MenuPrincipalController implements Initializable {
             stage.menuDistribuidoresView();
         }else if(event.getSource() == btnEmpleados){
             stage.MenuEmpleadosView();
-        } 
+        }else if(event.getSource() == btnProductos){
+            stage.menuProductosView();
+        }else if(event.getSource() == btnSalir){            
+            if (SuperKInalAlerta.getInstance().mostrarAlertaConfi(4).get() == ButtonType.OK){
+               stage.loginView();
+            }else{}
+          
+        }
     }
 }
 

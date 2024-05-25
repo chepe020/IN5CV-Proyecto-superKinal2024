@@ -10,6 +10,8 @@ begin
 end$$
 delimiter ;
 
+-- call sp_usodeStocks(2);
+
 
 delimiter $$
 create trigger tg_restardeStock
@@ -80,7 +82,6 @@ create function fn_totalFacturas(facId int) returns decimal(10, 2) deterministic
     end$$
 delimiter ;
 
-
 delimiter $$
 create function fn_calcularTotalUnitario(factId int) returns decimal(10, 2) deterministic
 begin
@@ -115,6 +116,7 @@ begin
     return total;
 end$$
 delimiter ;
+
 
 delimiter $$
 create function fn_calcularTotalMayor(factId int) returns decimal(10, 2) deterministic
@@ -162,6 +164,7 @@ begin
 end $$
 delimiter ;
 
+-- call sp_asignarTotal(21.00,null);
 
 delimiter $$
 create trigger tg_totalFacturas

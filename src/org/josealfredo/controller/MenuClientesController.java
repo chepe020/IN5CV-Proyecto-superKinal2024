@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -26,6 +27,7 @@ import org.josealfredo.dao.Conexion;
 import org.josealfredo.dto.ClienteDTO;
 import org.josealfredo.model.Cliente;
 import org.josealfredo.system.Main;
+import org.josealfredo.utils.SuperKInalAlerta;
 
 /**
  * FXML Controller class
@@ -69,9 +71,13 @@ public class MenuClientesController implements Initializable {
         }if(event.getSource() == btnRegresar){
             stage.menuPrincipalView();
         }if(event.getSource() == btnEliminar){
-            int cliId = (((Cliente)tblClientes.getSelectionModel().getSelectedItem()).getClienteId());
-            eliminarCliente(cliId);
-            cargarLista();
+            
+            if(SuperKInalAlerta.getInstance().mostrarAlertaConfi(1).get() == ButtonType.OK){
+                int cliId = (((Cliente)tblClientes.getSelectionModel().getSelectedItem()).getClienteId());
+                eliminarCliente(cliId);
+                cargarLista();
+            }
+            
         }if(event.getSource() == btnBucar){
             tblClientes.getItems(). clear();
             if(tfClienteId.getText().equals("")){

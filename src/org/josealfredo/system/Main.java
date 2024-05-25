@@ -17,6 +17,7 @@ import org.josealfredo.controller.FormClienteController;
 import org.josealfredo.controller.FormDetallesComprasController;
 import org.josealfredo.controller.FormDistribuidoresController;
 import org.josealfredo.controller.FormEmpleadosController;
+import org.josealfredo.controller.LoginController;
 import org.josealfredo.controller.MenuCargosController;
 import org.josealfredo.controller.MenuCategoriaProductosController;
 import org.josealfredo.controller.MenuClientesController;
@@ -24,7 +25,9 @@ import org.josealfredo.controller.MenuComprasController;
 import org.josealfredo.controller.MenuDistribuidoresController;
 import org.josealfredo.controller.MenuEmpleadosController;
 import org.josealfredo.controller.MenuPrincipalController;
+import org.josealfredo.controller.MenuProductosController;
 import org.josealfredo.controller.MenuTicketSoporteController;
+import org.josealfredo.controller.RegistroUsuariosController;
 
 /**
  *
@@ -39,7 +42,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         this.stage = stage;
         stage.setTitle("----- Super Kinal APP ----");
-        menuPrincipalView();
+        loginView();
         stage.show();
     }
     
@@ -179,6 +182,36 @@ public class Main extends Application {
             FormEmpleadosController formEmpleadosController = (FormEmpleadosController)switchScene("FormEmpleadosView.fxml",600,1200);
             formEmpleadosController.setOp(op);
             formEmpleadosController.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    public void menuProductosView(){
+        try{
+            MenuProductosController menuProductosController = (MenuProductosController)switchScene("MenuProductosView.fxml",1200,750);
+            menuProductosController.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    public void loginView(){
+        try{
+            LoginController loginController = (LoginController)switchScene("LoginView.fxml",500,750);
+            loginController.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    public void registroUsuariosController(){
+        try{
+            RegistroUsuariosController registroUsuariosController = (RegistroUsuariosController)switchScene("RegistroUsuariosView.fxml",500,750);
+            registroUsuariosController.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
             e.printStackTrace();
