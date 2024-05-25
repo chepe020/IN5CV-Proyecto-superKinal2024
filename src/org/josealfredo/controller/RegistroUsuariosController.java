@@ -26,6 +26,7 @@ import org.josealfredo.model.Empleados;
 import org.josealfredo.model.NivelesAcceso;
 import org.josealfredo.system.Main;
 import org.josealfredo.utils.PasswordUtils;
+import org.josealfredo.utils.SuperKInalAlerta;
 
 /**
  * FXML Controller class
@@ -59,8 +60,17 @@ public class RegistroUsuariosController implements Initializable {
     @FXML
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnRegistrar){
-            agregarUsuarios();
-            Stage.loginView();
+            
+            if(!tfUser.getText().equals("") && !tfPassword.getText().equals("") && !cmbEmpleados.getValue().equals("") && !cmbNivel.getValue().equals("")){
+                SuperKInalAlerta.getInstance().mostrarAlertaInfo(002);
+                agregarUsuarios();
+                Stage.loginView();
+            }else{
+               SuperKInalAlerta.getInstance().mostrarAlertaInfo(001);
+               tfUser.requestFocus();
+               return;
+            }
+          
         }else if(event.getSource() == btnRegresar){
             Stage.loginView();
         }else if (event.getSource() == btnEmpleados){

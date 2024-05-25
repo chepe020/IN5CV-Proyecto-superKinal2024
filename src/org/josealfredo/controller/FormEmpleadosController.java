@@ -28,6 +28,7 @@ import org.josealfredo.dto.EmpleadosDTO;
 import org.josealfredo.model.Cargos;
 import org.josealfredo.model.Empleados;
 import org.josealfredo.system.Main;
+import org.josealfredo.utils.SuperKInalAlerta;
 
 /**
  * FXML Controller class
@@ -63,17 +64,48 @@ public class FormEmpleadosController implements Initializable {
     @FXML
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnCancelar){
-            Stage.MenuEmpleadosView();
-        }if(event.getSource() == btnAceptar){
             if(op == 1){
-                agregarEmpleados();
                 Stage.MenuEmpleadosView();
             }else if(op == 2){
-                editarEmpleados();
                 Stage.MenuEmpleadosView();
             }else if(op == 3){
-                agregarEmpleados();
                 Stage.registroUsuariosController();
+            }
+            
+        }if(event.getSource() == btnAceptar){
+            if(op == 1){
+                
+                if(!tfnombreEmpleado.getText().equals("") && !tfapellidoEmpleado.getText().equals("") && !tfsueldo.getText().equals("") && !tfhoraEntrada.getText().equals("") && !tfhoraSalida.getText().equals("") && !cmbcargoId.getValue().equals("") && !cmbencargadoId.getValue().equals("")){
+                    SuperKInalAlerta.getInstance().mostrarAlertaInfo(002);
+                    agregarEmpleados();
+                    Stage.MenuEmpleadosView();
+                }else{
+                    SuperKInalAlerta.getInstance().mostrarAlertaInfo(001);
+                    tfnombreEmpleado.requestFocus();
+                    return;
+                }
+            }else if(op == 2){
+                
+                if(!tfnombreEmpleado.getText().equals("") && !tfapellidoEmpleado.getText().equals("") && !tfsueldo.getText().equals("") && !tfhoraEntrada.getText().equals("") && !tfhoraSalida.getText().equals("") && !cmbcargoId.getValue().equals("") && !cmbencargadoId.getValue().equals("")){
+                    SuperKInalAlerta.getInstance().mostrarAlertaInfo(002);
+                    editarEmpleados();
+                    Stage.MenuEmpleadosView();
+                }else{
+                    SuperKInalAlerta.getInstance().mostrarAlertaInfo(001);
+                    tfnombreEmpleado.requestFocus();
+                    return;
+                }
+               
+            }else if(op == 3){
+                if(!tfnombreEmpleado.getText().equals("") && !tfapellidoEmpleado.getText().equals("") && !tfsueldo.getText().equals("") && !tfhoraEntrada.getText().equals("") && !tfhoraSalida.getText().equals("") && !cmbcargoId.getValue().equals("") && !cmbencargadoId.getValue().equals("")){
+                    SuperKInalAlerta.getInstance().mostrarAlertaInfo(002);
+                    agregarEmpleados();
+                    Stage.registroUsuariosController();
+                }else{
+                    SuperKInalAlerta.getInstance().mostrarAlertaInfo(001);
+                    tfnombreEmpleado.requestFocus();
+                    return;
+                }
             }
         }
     }
