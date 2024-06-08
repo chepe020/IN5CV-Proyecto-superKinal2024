@@ -337,7 +337,9 @@ DELIMITER $$
 create procedure sp_ListarProducto()
 	BEGIN 
 		select pro.productoId, pro.nombreProducto, pro.descripcionProducto,pro.cantidadStock, 
-        pro.precioVentaUnitario,pro.precioVentaMayor,pro.precioCompra,DI.distribuidorId, CA.categoriaProductoId from Productos pro
+        pro.precioVentaUnitario,pro.precioVentaMayor,pro.precioCompra,
+        concat('Id', DI.distribuidorId, ' | ', DI.nombreDistribuidor, ' | ' , DI.direccionDistribuidor) as 'distribuidorId',
+        concat('Id=',CA.categoriaProductoId, ' | ', CA.nombreCategoria, ' | ' , CA.descripcionCategoria) as 'categoriaProductoId' from Productos pro
 		join Distribuidores DI on pro.distribuidorId = DI.distribuidorId
         join CategoriaProductos CA on pro.categoriaProductoId = CA.categoriaProductoId;
     END $$

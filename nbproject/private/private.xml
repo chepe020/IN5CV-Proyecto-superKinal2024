@@ -3,13 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Informatica/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/josealfredo/controller/MenuComprasController.java</file>
-            <file>file:/C:/Users/Informatica/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/josealfredo/controller/MenuProductosController.java</file>
-            <file>file:/C:/Users/Informatica/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/josealfredo/dao/Conexion.java</file>
-            <file>file:/C:/Users/Informatica/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/josealfredo/controller/MenuCargosController.java</file>
-            <file>file:/C:/Users/Informatica/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/josealfredo/report/GenerarReporte.java</file>
-            <file>file:/C:/Users/Informatica/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/josealfredo/controller/MenuPrincipalController.java</file>
-            <file>file:/C:/Users/Informatica/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/josealfredo/controller/RegistroUsuariosController.java</file>
+            <file>file:/C:/Users/Chepe/Desktop/Repositorio%20casa/IN5CV-Proyecto-superKinal2024/src/org/josealfredo/controller/MenuProductosController.java</file>
+            <file>file:/C:/Users/Chepe/Desktop/Repositorio%20casa/IN5CV-Proyecto-superKinal2024/src/org/josealfredo/model/Productos.java</file>
+            <file>file:/C:/Users/Chepe/Desktop/Repositorio%20casa/IN5CV-Proyecto-superKinal2024/src/org/josealfredo/controller/FormEmpleadosController.java</file>
+            <file>file:/C:/Users/Chepe/Desktop/Repositorio%20casa/IN5CV-Proyecto-superKinal2024/src/org/josealfredo/controller/MenuClientesController.java</file>
+            <file>file:/C:/Users/Chepe/Desktop/Repositorio%20casa/IN5CV-Proyecto-superKinal2024/src/org/josealfredo/controller/MenuEmpleadosController.java</file>
+            <file>file:/C:/Users/Chepe/Desktop/Repositorio%20casa/IN5CV-Proyecto-superKinal2024/src/org/josealfredo/report/GenerarReporte.java</file>
+            <file>file:/C:/Users/Chepe/Desktop/Repositorio%20casa/IN5CV-Proyecto-superKinal2024/src/org/josealfredo/model/CategoriaProductos.java</file>
+            <file>file:/C:/Users/Chepe/Desktop/Repositorio%20casa/IN5CV-Proyecto-superKinal2024/src/org/josealfredo/dao/Conexion.java</file>
         </group>
     </open-files>
 </project-private>

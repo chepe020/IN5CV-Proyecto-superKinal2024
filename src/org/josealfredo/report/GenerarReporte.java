@@ -4,10 +4,13 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import org.josealfredo.dao.Conexion;
+import win.zqxu.jrviewer.JRViewerFX;
 
 /**
  *
@@ -37,12 +40,25 @@ public class GenerarReporte {
             
             Map<String,Object> parametros = new HashMap<>();
             
-            InputStream jasperPath = GenerarReporte.class.getResourceAsStream("/org/josealfredo/report/Clientes.jasper");
+            InputStream jasperPath = GenerarReporte.class.getResourceAsStream("/org/josealfredo/report/Cliente.jasper");
             JasperPrint reporte = JasperFillManager.fillReport(jasperPath,parametros,conexion);
             
             Stage reportStage = new Stage();
             
+            JRViewerFX reportViewer = new JRViewerFX(reporte);
             
+            Pane root = new Pane();
+            
+            root.getChildren().add(reportViewer);
+                        
+            reportViewer.setPrefSize(612, 792);
+            
+           Scene scene = new Scene(root);
+           
+           reportStage.setScene(scene);
+           reportStage.setTitle("Clientes");
+           reportStage.show();
+           
         }catch(Exception e){
             e.printStackTrace();
         }

@@ -149,7 +149,7 @@ public class FormEmpleadosController implements Initializable {
         return index;
     }
         
-    public ObservableList<Cargos> listarCargos(){
+        public ObservableList<Cargos> listarCargos(){
         ArrayList<Cargos> cargo = new ArrayList<>();
         try{
             conexion = Conexion.getInstance().obtenerConexion();

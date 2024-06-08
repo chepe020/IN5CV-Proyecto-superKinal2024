@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Clientes" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="24e25a95-a12d-4232-b60b-5e949ad65b1d">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBSuperKInalR"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBSuperKInal"/>
 	<subDataset name="Dataset1" uuid="c879d147-ec05-4ac0-8c93-3ff39ba5a6d9">
 		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 		<queryString>
@@ -65,10 +65,6 @@
 	</background>
 	<title>
 		<band height="140" splitType="Stretch">
-			<image>
-				<reportElement x="-10" y="0" width="150" height="125" uuid="d9f02afe-47d1-4a90-a6c8-6a2cfbc6c101"/>
-				<imageExpression><![CDATA["C:/Users/Informatica/Desktop/JavaLlogos/Jose ALFREDO.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="190" y="10" width="350" height="90" uuid="464859ac-7f50-4f95-873d-21100fccdea0"/>
 				<textElement textAlignment="Center">
@@ -76,6 +72,10 @@
 				</textElement>
 				<text><![CDATA[Clientes]]></text>
 			</staticText>
+			<image>
+				<reportElement x="20" y="10" width="120" height="120" uuid="34bd849f-4926-41d9-b997-bf125012db06"/>
+				<imageExpression><![CDATA["C:/Users/Chepe/Desktop/Repositorio casa/IN5CV-Proyecto-superKinal2024/src/org/josealfredo/image/Jose ALFREDO.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

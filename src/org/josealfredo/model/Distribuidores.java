@@ -79,7 +79,7 @@ public class Distribuidores {
 
     @Override
     public String toString() {
-        return "Id" + distribuidorId + " | " + nombreDistribuidor + " | " + direccionDistribuidor + " | " + nitDistribuidor + " | " + telefonoDistribuidor + " | " + web;
+        return "Id" + distribuidorId + " | " + nombreDistribuidor + " | " + direccionDistribuidor;
     }
     
     

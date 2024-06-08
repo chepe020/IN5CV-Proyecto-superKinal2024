@@ -35,15 +35,17 @@
          </children>
       </GridPane>
       <Button fx:id="btnRegresar" layoutX="759.0" layoutY="49.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="201.0" style="-fx-background-radius: 40; -fx-effect: dropshadow(three-pass-box,black,20,0,0,0); -fx-background-color: #9EADFF;" text="Regresar" />
-      <TableView layoutX="360.0" layoutY="231.0" prefHeight="379.0" prefWidth="712.0">
+      <TableView fx:id="tblProductos" layoutX="360.0" layoutY="231.0" prefHeight="379.0" prefWidth="712.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="ID" />
-          <TableColumn prefWidth="75.0" text="Nombre " />
-            <TableColumn prefWidth="75.0" text="Descripcion " />
-            <TableColumn prefWidth="75.0" text="Stonk" />
-            <TableColumn prefWidth="75.0" text="Prec.Unitario" />
-            <TableColumn prefWidth="75.0" />
-            <TableColumn prefWidth="75.0" text="Nombre " />
+          <TableColumn fx:id="colproductoId" prefWidth="45.60003662109375" text="ID" />
+          <TableColumn fx:id="colnombreProducto" prefWidth="74.4000244140625" text="Nombre " />
+            <TableColumn fx:id="coldescripcionProducto" prefWidth="84.80001831054688" text="Descripcion " />
+            <TableColumn fx:id="colcantidadStock" prefWidth="53.60003662109375" text="Stonk" />
+            <TableColumn fx:id="colprecioVentaUnitario" prefWidth="87.99993896484375" text="Prec.Unitario" />
+            <TableColumn fx:id="colprecioVentaMayor" prefWidth="65.5999755859375" text="Pre.Mayor" />
+            <TableColumn fx:id="colprecioCompra" prefWidth="73.5999755859375" text="Pre.Compra" />
+            <TableColumn fx:id="coldistribuidorId" prefWidth="98.4000244140625" text="Distribuidor" />
+            <TableColumn fx:id="colcategoriaProductoId" prefWidth="123.199951171875" text="CategoriaProducto" />
         </columns>
       </TableView>
    </children>
